@@ -15,12 +15,6 @@ M4 X B GND 0 MODN W=2u L=1u
 VDD SUP 0 2.5V
 VGND GND 0 0V
 
-* TEST
-* Va A 0 PULSE(0 2.5 0 1NS 1NS 1NS 2NS)
-* Vb B 0 PULSE(0 2.5 0 1NS 1NS 1NS 2NS)
-
-* .TRAN 1PS 10NS
-* .PROBE
 .inc 'tsmc025.txt'
 .ends nand
 ***************************************
@@ -112,14 +106,24 @@ M8 X3 C GND 0 MODN W=2u L=1u
 VDD SUP 0 2.5V
 VGND GND 0 0V
 
-* TEST
-*Va A 0 PULSE(0 2.5 0 1NS 1NS 1NS 2NS)
-*Vb B 0 PULSE(0 0 0 1NS 1NS 1NS 2NS)
-*Vb C 0 PULSE(0 2.5 2.5 1NS 1NS 1NS 2NS)
-*Vb D 0 PULSE(0 2.5 0 1NS 1NS 1NS 2NS)
-
-.TRAN 1PS 10NS
-.PROBE
-
 .inc 'tsmc025.txt'
 .ends nand4
+
+* *TEST
+* Va A 0 PWL(1P 0v, 9.9N 0v,
+* +          10N 2.5v, 19.9N 2.5v,
+* +          20N 2.5v)
+* Vb B 0 PWL(1P 0V, 9.9N 0V,
+* +          10N 0V, 19.9N 0V,
+* +          20N 2.5V)
+* Vc C 0 PWL(1P 0V, 9.9N 0V,
+* +          10N 2.5V, 19.9N 2.5V,
+* +          20N 2.5V)
+* Vd D 0 PWL(1P 0V, 9.9N 0V,
+* +          10N 0V, 19.9N 0V,
+* +          20N 2.5V)
+
+* xout A B C D out nand4
+* .TRAN 1PS 30NS
+* .PROBE
+* .End

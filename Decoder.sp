@@ -1,4 +1,4 @@
-.subckt decoder16 A B C D Y0 Y1 Y2 Y3 Y4 Y5 Y6 Y7 Y8 Y9 Y10 Y11 Y12 Y13 Y14 Y15
+.subckt decoder A B C D Y0 Y1 Y2 Y3 Y4 Y5 Y6 Y7 Y8 Y9 Y10 Y11 Y12 Y13 Y14 Y15
 xnota A nota inv
 xnotb B notb inv
 xnotc C notc inv

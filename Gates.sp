@@ -6,8 +6,9 @@
 .subckt nand A B OUT 
 
 * Mosfets
-M1 SUP B OUT 0 MODP W=2u L=1u
-M2 SUP A OUT 0 MODP W=2u L=1u
+M1 OUT B SUP SUP MODP W=2u L=1u
+M2 OUT A SUP SUP MODP W=2u L=1u
+
 M3 OUT A X 0 MODN W=2u L=1u
 M4 X B GND 0 MODN W=2u L=1u
 
@@ -24,9 +25,9 @@ VGND GND 0 0V
 .subckt nand3 A B C OUT 
 
 * Mosfets
-M1 SUP B OUT 0 MODP W=2u L=1u
-M2 SUP A OUT 0 MODP W=2u L=1u
-M3 SUP C OUT 0 MODP W=2u L=1u
+M1 OUT B SUP SUP MODP W=2u L=1u
+M2 OUT A SUP SUP MODP W=2u L=1u
+M3 OUT C SUP SUP MODP W=2u L=1u
 
 M4 OUT A X1 0 MODN W=2u L=1u
 M5 X1 B X2 0 MODN W=2u L=1u
@@ -51,8 +52,6 @@ M1 OUT A X1 0 MODP W=2u L=1u
 M2 X1 B X2 0 MODP W=2u L=1u
 M3 X2 C SUP 0 MODP W=2u L=1u
 
-
-
 M4 GND B OUT 0 MODN W=2u L=1u
 M5 GND A OUT 0 MODN W=2u L=1u
 M6 GND C OUT 0 MODN W=2u L=1u
@@ -73,9 +72,9 @@ VGND GND 0 0V
 .subckt inv A OUT 
 
 * Mosfets
-M1 OUT A SUP 0 MODP W=2u L=1u
+M1 OUT A SUP SUP MODP W=2u L=1u
 
-M2 GND A OUT 0 MODN W=2u L=1u
+M2 OUT A GND 0 MODN W=2u L=1u
 
 * VDD and GND
 VDD SUP 0 2.5V
@@ -92,10 +91,10 @@ VGND GND 0 0V
 .subckt nand4 A B C D OUT 
 
 * Mosfets
-M1 SUP B OUT SUP MODP W=2u L=1u
-M2 SUP A OUT SUP MODP W=2u L=1u
-M3 SUP C OUT SUP MODP W=2u L=1u
-M4 SUP D OUT SUP MODP W=2u L=1u
+M1 OUT B SUP SUP MODP W=2u L=1u
+M2 OUT A SUP SUP MODP W=2u L=1u
+M3 OUT C SUP SUP MODP W=2u L=1u
+M4 OUT D SUP SUP MODP W=2u L=1u
 
 M5 OUT A X1 0 MODN W=2u L=1u
 M6 X1 B X2 0 MODN W=2u L=1u
@@ -114,13 +113,13 @@ VGND GND 0 0V
 * +          10N 2.5v, 19.9N 2.5v,
 * +          20N 2.5v)
 * Vb B 0 PWL(1P 0V, 9.9N 0V,
-* +          10N 0V, 19.9N 0V,
+* +          10N 2.5V, 19.9N 2.5V,
 * +          20N 2.5V)
 * Vc C 0 PWL(1P 0V, 9.9N 0V,
 * +          10N 2.5V, 19.9N 2.5V,
 * +          20N 2.5V)
 * Vd D 0 PWL(1P 0V, 9.9N 0V,
-* +          10N 0V, 19.9N 0V,
+* +          10N 2.5V, 19.9N 2.5V,
 * +          20N 2.5V)
 
 * xout A B C D out nand4

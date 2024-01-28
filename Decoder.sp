@@ -26,4 +26,4 @@ xy15 A B C D Y15 nand4
 
 
 .inc 'Gates.sp'
-.ends decoder16
+.ends decoder

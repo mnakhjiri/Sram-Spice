@@ -3,9 +3,11 @@
 
 *‌ Nands
 x1 D E out1 nand
-x2 out1 E out2 nand
-x3 out1 outp out nand
-x4 out out2 outp nand
+x2 D D d_inv nand
+x3 E d_inv out2 nand
+x4 out1 OUT_inv OUT nand
+x5 out2 OUT OUT_inv nand
+
 
 
 

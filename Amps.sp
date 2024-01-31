@@ -4,8 +4,8 @@
 
 .subckt amp A OUT 
 * Mosfets
-x1 A A_inv inv
-x2 A_inv OUT inv64
+x1 A A_inv inv64
+x2 A_inv OUT inv
 .inc 'Gates.sp'
 .ends amp
 

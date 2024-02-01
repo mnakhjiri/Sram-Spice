@@ -1,9 +1,6 @@
-* VDD SUP 0 5V
-* VGND GND 0 0V
 ***************************************
 ***************** nand ****************
-**************
-*************************
+***************************************
 
 .subckt nand A B OUT 
 
@@ -17,14 +14,6 @@ M4 X B GND 0 MODN W=2u L=1u
 VDD SUP 0 5V
 VGND GND 0 0V
 
-* .MEASURE pwr AVG P(VDD) FROM 0ns TO 150ns
-
-* TEST
-* Va A 0 PULSE(0 2.5 0 1NS 1NS 1NS 2NS)
-* Vb B 0 PULSE(0 2.5 0 1NS 1NS 1NS 2NS)
-
-* .TRAN 1PS 10NS
-* .PROBE
 .inc 'tsmc025.txt'
 .ends nand
 ***************************************
@@ -46,6 +35,7 @@ M6 X2 C GND 0 MODN W=2u L=1u
 VDD SUP 0 5V
 VGND GND 0 0V
 
+.MEASURE pwr AVG P(VDD) FROM 0ns TO 150ns
 
 .inc 'tsmc025.txt'
 .ends nand3
@@ -87,6 +77,8 @@ M2 OUT A GND 0 MODN W=2u L=1u
 * VDD and GND
 VDD SUP 0 5V
 VGND GND 0 0V
+.MEASURE pwr AVG P(VDD) FROM 0ns TO 150ns
+
 
 
 .inc 'tsmc025.txt'
@@ -102,6 +94,8 @@ M2 OUT A GND 0 MODN W=64u L=1u
 * VDD and GND
 VDD SUP 0 5V
 VGND GND 0 0V
+.MEASURE pwr AVG P(VDD) FROM 0ns TO 150ns
+
 
 
 .inc 'tsmc025.txt'
@@ -124,21 +118,12 @@ M6 X1 B X2 0 MODN W=2u L=1u
 M7 X2 C X3 0 MODN W=2u L=1u
 M8 X3 C GND 0 MODN W=2u L=1u
 
-* VDD and GND
-* VDD SUP 0 5V
-* VGND GND 0 0V
-
-* TEST
-*Va A 0 PULSE(0 2.5 0 1NS 1NS 1NS 2NS)
-*Vb B 0 PULSE(0 0 0 1NS 1NS 1NS 2NS)
-*Vb C 0 PULSE(0 2.5 2.5 1NS 1NS 1NS 2NS)
-*Vb D 0 PULSE(0 2.5 0 1NS 1NS 1NS 2NS)
-
-* .TRAN 1PS 10NS
-* .PROBE
-
 .inc 'tsmc025.txt'
 .ends nand4
+
+***************************************
+***************** NORS ****************
+***************************************
 
 .subckt nor4 A B C D OUT 
 
@@ -149,10 +134,6 @@ xnor21 C D C_or_D nor2
 xnor21_inv C_or_D C_or_D C_or_D_inv nand
 
 xnor22 A_or_B_inv C_or_D_inv OUT nor2
-
-* VDD and GND
-* VDD SUP 0 5V
-* VGND GND 0 0V
 
 .ends nor4
 
@@ -181,30 +162,4 @@ xnor21_inv out2_inv out2_inv out2 nand
 xnor22 out1 out2 OUT nor2
 
 .ends nor16
-
-* Subcircuit Definition for Standard Inverter (INV)
-.subckt inv_simple A OUT VDD GND
-M1 OUT A VDD VDD MODP L=1u W=2u
-M2 OUT A GND GND MODN L=1u W=2u
-.inc 'tsmc025.txt'
-.ends inv_simple
-
-* Subcircuit Definition for Stronger Inverter (INV_STRONG)
-.subckt inv_strong A OUT VDD GND
-M1 OUT A VDD VDD MODP L=1u W=8u  
-M2 OUT A GND GND MODN L=1u W=8u  
-.inc 'tsmc025.txt'
-.ends inv_strong
-
-* CMOS Buffer using INV and INV_STRONG
-.subckt cmos_buffer_cap A OUT VDD GND
-* First inverter stage
-X1 A mid VDD GND inv_simple
-
-* Capacitor added for timing/filtering between the inverters
-* C1 mid mid_cap 10pF
-
-* Second inverter stage with stronger drive capability
-X2 mid_cap OUT VDD GND inv_strong
-.ends cmos_buffer_cap
 
